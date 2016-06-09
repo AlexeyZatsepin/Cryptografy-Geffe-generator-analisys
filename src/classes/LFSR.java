@@ -23,12 +23,12 @@ public class LFSR {
     private final int length;
 
     public LFSR(long polynomial, long startState) {
-        int n = Long.numberOfLeadingZeros(polynomial) + 1;
+        int n = Long.numberOfLeadingZeros(polynomial)+1;
         if (n > 63) {
             throw new IllegalArgumentException("Illegal register length: " + (63 - n));
         }
         int identityMask = (0xffffffff >>> n);
-        this.length = 63 - n;
+        this.length = 64 - n;
         this.multiplicativeMask = polynomial & identityMask;
         this.startState = startState & identityMask;
         this.state = this.startState;
@@ -45,5 +45,10 @@ public class LFSR {
 
     public void reset() {
         state = startState;
+    }
+
+    @Override
+    public String toString() {
+        return Long.toBinaryString(state);
     }
 }

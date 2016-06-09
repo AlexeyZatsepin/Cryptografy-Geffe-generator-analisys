@@ -16,16 +16,15 @@ public class Executable {
 
     public static void main(String[] args) throws Exception {
         //считываем данные
-        System.out.println(0xffffffff);
         String bitString = merge(Files.readAllLines(Paths.get(FILE_NAME), StandardCharsets.UTF_8));
         int[] bits = parseBits(bitString);
         //характеристические полиномы регистров
 //        long polynomialL1 = 0b100000000000000000000001010011;
 //        long polynomialL2 = 0b1000000000000000000000000001001;
 //        long polynomialL3 = 0b10000000000000000000000010101111;
-        long polynomialL1 = 0b1000000000000000000001001;
-        long polynomialL2 = 0b10000000000000000001000111;
-        long polynomialL3 = 0b100000000000000000000100111;
+        long polynomialL1 = 0b10000000000000000000001001;
+        long polynomialL2 = 0b100000000000000000001000111;
+        long polynomialL3 = 0b1000000000000000000000100111;
 
         GeffeCryptanalysis.breakGeffe(polynomialL1, polynomialL2, polynomialL3, bits);
     }
